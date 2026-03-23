@@ -24,6 +24,27 @@ describe Prawn::Document do
       expect(pdf.grid.gutter).to eq(0.1)
     end
 
+    it 'defaults to zero gutter when no gutter is defined' do
+      pdf.define_grid(columns: 5, rows: 8)
+      expect(pdf.grid.gutter).to eq(0)
+      expect(pdf.grid.row_gutter).to eq(0)
+      expect(pdf.grid.column_gutter).to eq(0)
+    end
+
+    it 'defaults column_gutter to zero when only row_gutter is given' do
+      pdf.define_grid(columns: 5, rows: 8, row_gutter: 10)
+      expect(pdf.grid.row_gutter).to eq(10)
+      expect(pdf.grid.column_gutter).to eq(0)
+      expect(pdf.grid.gutter).to eq(0)
+    end
+
+    it 'defaults row_gutter to zero when only column_gutter is given' do
+      pdf.define_grid(columns: 5, rows: 8, column_gutter: 10)
+      expect(pdf.grid.row_gutter).to eq(0)
+      expect(pdf.grid.column_gutter).to eq(10)
+      expect(pdf.grid.gutter).to eq(0)
+    end
+
     describe 'when a grid is defined' do
       let(:num_columns) { 5 }
       let(:num_rows) { 8 }

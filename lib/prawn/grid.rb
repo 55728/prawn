@@ -149,8 +149,8 @@ module Prawn
           @row_gutter = @gutter
           @column_gutter = @gutter
         else
-          @row_gutter = Float(options[:row_gutter])
-          @column_gutter = Float(options[:column_gutter])
+          @row_gutter = Float(options.fetch(:row_gutter, 0))
+          @column_gutter = Float(options.fetch(:column_gutter, 0))
           @gutter = 0
         end
       end
